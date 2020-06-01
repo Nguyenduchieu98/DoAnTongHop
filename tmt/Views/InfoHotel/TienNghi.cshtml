@@ -1,0 +1,86 @@
+﻿@model tmt.Models.TienNghi
+
+
+<div class="interest-about" id="section04">
+    <div class="tlt pb10"><h2>Tiện nghi</h2></div>
+    <div class="room-info-content">
+        <div class="more-details text-center">
+            <ul>  
+                @if (Model.CachAm == true)
+                {
+                    <li>
+                        <i class="flaticon-silent"></i>
+                        Cách âm
+
+                    </li>
+                }
+                else
+                {
+                    <li></li>
+                }
+                    
+                @if (Model.Tivi == true)
+                {
+                    <li>
+                        <i class="flaticon-monitor"></i>
+                        Tivi
+                    </li>
+                }
+                else
+                {
+                    <li></li>
+                }
+
+                
+                @if (Model.BonTam == true)
+                {
+                    <li>
+                        <i class="flaticon-bathroom"></i>
+                        Bồn tắm
+                    </li>
+                }
+                else
+                {
+                    <li></li>
+                }
+
+                @if (Model.TuLanh == true)
+                {
+                    <li>
+                        <i class="flaticon-cold"></i>
+                        Tủ lạnh
+                    </li>
+                }
+                else
+                {
+                    <li></li>
+                }
+                
+                @if (Model.MayGiat == true)
+                {
+                    <li>
+                        <i class="flaticon-household"></i>
+                        Máy giặt
+                    </li>
+                }
+                else
+                {
+                    <li></li>
+                }
+                
+                @if (Model.ChoThueXe == true)
+                {
+                    <li>
+                        <i class="flaticon-island"></i>
+                        Cho thuê xe
+                    </li>
+                }
+                else
+                {
+                    <li></li>
+                }
+                
+            </ul>
+        </div>
+    </div>
+</div>

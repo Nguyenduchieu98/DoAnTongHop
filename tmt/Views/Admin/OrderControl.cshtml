@@ -1,0 +1,52 @@
+﻿@model IEnumerable<tmt.Models.OrderProductViewModel>
+
+@{
+    ViewBag.Title = "OrderControl";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>OrderControl</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ten_ks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order_username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order_total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order_day)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ten_ks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.order_username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.order_total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.order_day)
+            </td>
+            <td>
+                <a href="@Url.Action("RemoveOrder",
+                        "Admin",
+                        new { id = item.order_id})" onclick="return confirm('Bạn có muốn xóa hóa đơn này không?');">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

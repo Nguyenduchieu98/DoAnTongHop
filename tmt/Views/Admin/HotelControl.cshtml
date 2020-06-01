@@ -1,0 +1,66 @@
+﻿@using PagedList.Mvc;
+@model PagedList.PagedList<tmt.Models.KhachSan>
+
+@{
+    ViewBag.Title = "HotelControl";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+<h2>Quản lý sản phẩm</h2>
+<h3 class="text-center">@ViewBag.ErRemove</h3>
+<a class="btn btn-primary" href="@Url.Action("CreateHotel","Admin")" role="button" style="margin-bottom:10px;">Thêm sản phẩm</a>
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr class="success">
+                <th class="col-sm-2">Tên</th>
+                <th class="col-sm-1">Giới thiệu</th>
+                <th class="col-sm-1">Ảnh</th>
+                <th class="text-center">Địa Chỉ</th>
+                <th class="col-sm-1">SDT</th>
+                <th class="col-sm-1">Stars</th>
+                <th class="col-sm-1">Điểm</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TenKS</td>
+                    <td>
+                        <a href="@Url.Action("DetailHotel","Admin",new { id = item.MaKS})">Chi Tiết</a>
+                    </td>
+                    <td><img src="~/images/@item.hinh_1" width="90" /></td>
+                    <td>@item.DiaChi</td>
+                    <td>@item.SDT</td>
+                    <td>@item.star</td>
+                    <td>@item.point</td>
+                    <td><a href="@Url.Action("EditHotel","Admin", new { id = item.MaKS})"><i class="fas fa-edit"></i></a></td>
+                    <td class="text-center">
+                        <a href="@Url.Action("RemoveHotel",
+                        "Admin",
+                        new { id = item.MaKS})" onclick="return confirm('Bạn có muốn xóa @item.TenKS không?');">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="page-menu">
+    @Html.PagedListPager(Model, page => Url.Action("HotelControl", new { page = page }))
+</div>
+
+<style>
+    .page-menu li {
+        display: inline;
+    }
+
+    ul.pagination {
+        margin-left: 45%;
+    }
+</style>

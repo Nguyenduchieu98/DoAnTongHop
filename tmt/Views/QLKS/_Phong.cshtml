@@ -1,0 +1,7 @@
+﻿@using tmt.Models
+@model IEnumerable<Phong>
+
+@foreach (Phong p in Model)
+{
+    <p>@p.LoaiPhong.TenLoai: @string.Format("{0:N0} VND", p.Gia25) </p>
+}

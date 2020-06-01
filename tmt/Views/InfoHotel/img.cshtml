@@ -1,0 +1,50 @@
+﻿@model IEnumerable<tmt.Models.HinhAnh>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        @foreach (var img in Model)
+        {
+            if (img.Note == "active")
+            {
+                <div class="item active">
+                    <img src="~/images/@img.MaKS/@img.src" alt="x@img.Note" style="width:100%;height:550px" />
+                </div>
+            }
+            else
+            {
+                <div class="item">
+                    <img src="~/images//@img.MaKS/@img.src" alt="y@img.Note" style="width:100%;height:550px" />
+                </div>
+            }
+        }
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<ul class="carousel-indicators">
+    @{
+        int i = 0;
+    }
+    @foreach (var img in Model)
+    {
+
+        if (img.Note == "active")
+        {
+            <li data-target="#myCarousel" data-slide-to="@i" class="active"><img src="~/images/@img.MaKS/@img.src"></li>
+            i++;
+        }
+        else
+        {
+            <li data-target="#myCarousel" data-slide-to="@i"><img src="~/images/@img.MaKS/@img.src"></li>
+            i++;
+        }
+    }
+
+</ul>
+

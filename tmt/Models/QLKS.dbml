@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLKS1" Class="QLKSDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-PC4J6SL\SQLEXPRESS;Initial Catalog=QLKS1;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLKS1ConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ChiTietDatPhong" Member="ChiTietDatPhongs">
+    <Type Name="ChiTietDatPhong">
+      <Column Name="dondat_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maks" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maloai" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ngay_den" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ngay_tra" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="DonDatPhong_ChiTietDatPhong" Member="DonDatPhong" ThisKey="dondat_id" OtherKey="id_ddp" Type="DonDatPhong" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="KhachSan_ChiTietDatPhong" Member="KhachSan" ThisKey="maks" OtherKey="MaKS" Type="KhachSan" IsForeignKey="true" />
+      <Association Name="LoaiPhong_ChiTietDatPhong" Member="LoaiPhong" ThisKey="maloai" OtherKey="MaLoai" Type="LoaiPhong" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TienNghi" Member="TienNghis">
+    <Type Name="TienNghi">
+      <Column Name="MaKS" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LeTan24h" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ChoThueXe" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CachAm" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="MayGiat" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BonTam" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Tivi" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TuLanh" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="KhachSan_TienNghi" Member="KhachSan" ThisKey="MaKS" OtherKey="MaKS" Type="KhachSan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DiemDanhGia" Member="DiemDanhGias">
+    <Type Name="DiemDanhGia">
+      <Column Name="MaKS" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaKH" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Lan" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SachSe" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ThoaiMai" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="TienNghi" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="PhucVu" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="DangTien" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Wifi" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="DiaDiem" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="KhacHang_DiemDanhGia" Member="KhacHang" ThisKey="MaKH" OtherKey="MaKH" Type="KhacHang" IsForeignKey="true" />
+      <Association Name="KhacHang_DiemDanhGia1" Member="KhacHang1" ThisKey="MaKH" OtherKey="MaKH" Type="KhacHang" IsForeignKey="true" />
+      <Association Name="KhachSan_DiemDanhGia" Member="KhachSan" ThisKey="MaKS" OtherKey="MaKS" Type="KhachSan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DonDatPhong" Member="DonDatPhongs">
+    <Type Name="DonDatPhong">
+      <Column Name="id_ddp" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaKS" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="MaKH" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="thanh_tien" Type="System.Decimal" DbType="Decimal(15,0)" CanBeNull="true" />
+      <Column Name="ngay_dat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DanhGia" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="DonDatPhong_ChiTietDatPhong" Member="ChiTietDatPhongs" ThisKey="id_ddp" OtherKey="dondat_id" Type="ChiTietDatPhong" />
+      <Association Name="KhacHang_DonDatPhong" Member="KhacHang" ThisKey="MaKH" OtherKey="MaKH" Type="KhacHang" IsForeignKey="true" />
+      <Association Name="KhachSan_DonDatPhong" Member="KhachSan" ThisKey="MaKS" OtherKey="MaKS" Type="KhachSan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HinhAnh" Member="HinhAnhs">
+    <Type Name="HinhAnh">
+      <Column Name="MaKS" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="src" Type="System.String" DbType="NVarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="KhachSan_HinhAnh" Member="KhachSan" ThisKey="MaKS" OtherKey="MaKS" Type="KhachSan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KhacHang" Member="KhacHangs">
+    <Type Name="KhacHang">
+      <Column Name="MaKH" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PassWord" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NgaySinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="KhacHang_DiemDanhGia" Member="DiemDanhGias" ThisKey="MaKH" OtherKey="MaKH" Type="DiemDanhGia" />
+      <Association Name="KhacHang_DiemDanhGia1" Member="DiemDanhGias1" ThisKey="MaKH" OtherKey="MaKH" Type="DiemDanhGia" />
+      <Association Name="KhacHang_DonDatPhong" Member="DonDatPhongs" ThisKey="MaKH" OtherKey="MaKH" Type="DonDatPhong" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KhachSan" Member="KhachSans">
+    <Type Name="KhachSan">
+      <Column Name="MaKS" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenKS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaKV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GioiThieu" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="hinh_1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="hinh_2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="star" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="point" Type="System.Decimal" DbType="Decimal(2,1)" CanBeNull="true" />
+      <Column Name="QC" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LuotDanhGia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="KhachSan_ChiTietDatPhong" Member="ChiTietDatPhongs" ThisKey="MaKS" OtherKey="maks" Type="ChiTietDatPhong" />
+      <Association Name="KhachSan_TienNghi" Member="TienNghi" ThisKey="MaKS" OtherKey="MaKS" Type="TienNghi" Cardinality="One" />
+      <Association Name="KhachSan_DiemDanhGia" Member="DiemDanhGias" ThisKey="MaKS" OtherKey="MaKS" Type="DiemDanhGia" />
+      <Association Name="KhachSan_DonDatPhong" Member="DonDatPhongs" ThisKey="MaKS" OtherKey="MaKS" Type="DonDatPhong" />
+      <Association Name="KhachSan_HinhAnh" Member="HinhAnhs" ThisKey="MaKS" OtherKey="MaKS" Type="HinhAnh" />
+      <Association Name="KhachSan_Phong" Member="Phongs" ThisKey="MaKS" OtherKey="MaKS" Type="Phong" />
+      <Association Name="KhuVuc_KhachSan" Member="KhuVuc" ThisKey="MaKV" OtherKey="MaKV" Type="KhuVuc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KhuVuc" Member="KhuVucs">
+    <Type Name="KhuVuc">
+      <Column Name="MaKV" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenKV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="images" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Association Name="KhuVuc_KhachSan" Member="KhachSans" ThisKey="MaKV" OtherKey="MaKV" Type="KhachSan" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LoaiPhong" Member="LoaiPhongs">
+    <Type Name="LoaiPhong">
+      <Column Name="MaLoai" Type="System.Byte" DbType="TinyInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenLoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="LoaiPhong_ChiTietDatPhong" Member="ChiTietDatPhongs" ThisKey="MaLoai" OtherKey="maloai" Type="ChiTietDatPhong" />
+      <Association Name="LoaiPhong_Phong" Member="Phongs" ThisKey="MaLoai" OtherKey="MaLoai" Type="Phong" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Phong" Member="Phongs">
+    <Type Name="Phong">
+      <Column Name="MaKS" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaLoai" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Gia25" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Gia68" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="SL" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="KhachSan_Phong" Member="KhachSan" ThisKey="MaKS" OtherKey="MaKS" Type="KhachSan" IsForeignKey="true" />
+      <Association Name="LoaiPhong_Phong" Member="LoaiPhong" ThisKey="MaLoai" OtherKey="MaLoai" Type="LoaiPhong" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TaiKhoan" Member="TaiKhoans">
+    <Type Name="TaiKhoan">
+      <Column Name="MaTK" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenTK" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="MatKhau" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="VaiTro" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="TaiKhoan_TaiKhoan" Member="TaiKhoan2" ThisKey="MaTK" OtherKey="MaTK" Type="TaiKhoan" Cardinality="One" />
+      <Association Name="TaiKhoan_TaiKhoan" Member="TaiKhoan1" ThisKey="MaTK" OtherKey="MaTK" Type="TaiKhoan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.MaKH_AuTo1" Method="MaKH_AuTo1">
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.MaKH_AuTo2" Method="MaKH_AuTo2">
+    <Parameter Name="output" Type="System.String" DbType="VarChar(5)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.P_GetIDDonDatPhong" Method="P_GetIDDonDatPhong">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.f_GetMaKH" Method="f_GetMaKH" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+</Database>

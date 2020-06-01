@@ -1,0 +1,49 @@
+﻿
+@using (Html.BeginForm("Register1", "Use", FormMethod.Post))
+{
+
+    <div class="sign-up-htm">
+        <div class="group">
+            <label for="user" class="label">Tên đăng nhập</label>
+            <input id="user" required type="text" name="ID" class="input" pattern="[A-Za-z0-9]{6,}" title="username phải có từ 6 ký tự trở lên và không có ký tự đặc biệt">
+        </div>
+        <div class="group">
+            <label for="pass" class="label">Mật khẩu</label>
+            <input id="pass" required type="password" class="input" name="PW" data-type="password" pattern="[A-Za-z0-9]{6,}" title="password phải có từ 6 ký tự trở lên và không có ký tự đặc biệt">
+        </div>
+        <div class="group">
+            <label for="pass" class="label">Nhập lại mật khẩu</label>
+            <input id="pass" required type="password" class="input" name="rePW" data-type="password" pattern="[A-Za-z0-9]{6,}" title="password phải có từ 6 ký tự trở lên và không có ký tự đặc biệt">     
+        </div>
+        <div class="group">
+            <label for="pass" class="label">Họ Tên</label>
+            <input id="pass" type="text" name="Ten" class="input">
+        </div>
+        <div class="group">
+            <label for="pass" class="label">Địa chỉ</label>
+            <input id="pass" type="text" name="DiaChi" class="input">
+        </div>
+        <div class="group">
+            <label for="pass" class="label">Số điện thoại</label>
+            <input id="pass" type="text" name="phone" class="input">
+        </div>
+        <div class="group">
+            <label for="pass" class="label">Ngày sinh</label>
+            <input id="pass" type="date" name="NgaySinh" max="2000-01-01"  class="input">
+        </div>
+        <div class="group">
+            <label for="pass" class="label">Email Address</label>
+            <input id="pass" type="text" name="email" class="input">
+        </div>
+        <div class="group">
+            <input type="submit" class="button" value="Đăng ký">
+        </div>
+
+        <div class="hr"></div>
+        <div class="foot-lnk">
+            <a><label for="tab-1">Already Member?</a>
+        </div>
+    </div>
+}
+
+

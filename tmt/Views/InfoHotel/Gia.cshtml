@@ -1,0 +1,81 @@
+﻿@model IEnumerable<tmt.Models.Phong>
+
+<div class="interest-about" id="section05">
+    <div class="tlt pb10"><h2>Gi&aacute; ph&ograve;ng</h2></div>
+    <div class="interest-tbl-fl">
+        @foreach (var g in Model)
+        {
+            if (g.MaLoai == 1)
+            {
+                <table>
+                    <caption>Phòng đơn</caption>
+                    <tr>
+                        <th>Thứ hai - Thứ năm</th>
+                        <td>
+                            <strong>@string.Format("{0:N0} ₫", @g.Gia25)</strong>
+                            <i> (C&oacute; thể thay đổi theo ng&agrave;y lễ)</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Thứ s&aacute;u - Chủ nhật</th>
+                        <td>
+                            <strong>@string.Format("{0:N0} ₫", @g.Gia68)</strong>
+                            <i>(C&oacute; thể thay đổi theo ng&agrave;y lễ)</i>
+                        </td>
+                    </tr>
+                </table>
+            }
+            if(g.MaLoai == 2)
+            {
+
+                <table>
+                    <caption>Phòng đôi</caption>
+                    <tr>
+                        <th>Thứ hai - Thứ năm</th>
+                        <td>
+                            <strong>@string.Format("{0:N0} ₫", @g.Gia25)</strong>
+                            <i> (C&oacute; thể thay đổi theo ng&agrave;y lễ)</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Thứ s&aacute;u - Chủ nhật</th>
+                        <td>
+                            <strong>@string.Format("{0:N0} ₫",@g.Gia68)</strong>
+                            <i>(C&oacute; thể thay đổi theo ng&agrave;y lễ)</i>
+                        </td>
+                    </tr>
+                </table>
+            }
+        }  
+        <table>
+            <caption>Chi tiết phụ thu</caption>
+            <tr>
+                <th>Ph&iacute; kh&aacute;ch tăng th&ecirc;m</th>
+                <td>
+                    <strong>100,000 ₫</strong>
+                    <i>sau 2 kh&aacute;ch</i>
+                </td>
+            </tr>
+            <tr>
+                <th>Số đ&ecirc;m tối thiểu</th>
+                <td>
+                    <strong>1</strong>
+                    <i>đ&ecirc;m</i>
+                    <input type="hidden" value="1" id="min_stay">
+                </td>
+            </tr>
+            <tr>
+                <th>Ch&iacute;nh s&aacute;ch Huỷ</th>
+                <td>
+                    <strong>
+                        <strong class="color-primary">Moderate</strong>
+                    </strong>
+                    <p>Hoàn lại 50% giá trị đơn đặt phòng khi khách hủy trước 7 ngày nhận phòng.<br /> Khách hàng không được hoàn tiền trong vòng 7 ngày trước ngày nhận phòng.</p>
+
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+</div>

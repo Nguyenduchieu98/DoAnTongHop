@@ -1,0 +1,458 @@
+﻿@using tmt.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<KhachSan>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<div id="colorlib-reservation">
+    <!-- <div class="container"> -->
+    <div class="row">
+        <div class="search-wrap">
+            <div class="container-fluid">
+                
+                <ul class="nav nav-tabs select-tab-hotel">
+                    <li class="active"><a data-toggle="tab" href="#flight"><i class="flaticon-resort"></i>Hotel</a></li>
+                    <li><a data-toggle="tab" href="#hotel"><i class="flaticon-resort"></i> Hotel</a></li>
+                    <li><a data-toggle="tab" href="#car"><i class="flaticon-car"></i> Car Rent</a></li>
+                    <li><a data-toggle="tab" href="#cruises"><i class="flaticon-boat"></i> Cruises</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div id="flight" class="tab-pane fade in active">
+                    @using (Html.BeginForm("Search", "QLKS", FormMethod.Get, new { @class = "colorlib-form" }))
+                    {
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="date">Where:</label>
+                                    <div class="form-field">
+                                        <input type="text" name="destination" id="destination" class="form-control" placeholder="Search Location" autocomplete="on" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="date">Check-in:</label>
+                                    <div class="form-field">
+                                        <i class="icon icon-calendar2"></i>
+                                        <input type="text" id="date" class="form-control date" placeholder="Check-in date" name="CheckIn" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="date">Check-out:</label>
+                                    <div class="form-field">
+                                        <i class="icon icon-calendar2"></i>
+                                        <input type="text" id="date2" class="form-control date" placeholder="Check-out date" name="CheckOut" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label for="guests">Người lớn</label>
+                                    <div class="form-field">
+                                        <i class="icon icon-arrow-down3"></i>
+                                        <select name="people" id="people" class="form-control">
+                                            @for (int i = 1; i <= 15; i++)
+                                            {
+                                                <option value="@i">@i</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label for="guests">Trẻ em</label>
+                                    <div class="form-field">
+                                        <i class="icon icon-arrow-down3"></i>
+                                        <select name="children" id="people" class="form-control">
+                                            @for (int i = 1; i <= 8; i++)
+                                            {
+                                                <option value="@i">@i</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label for="date">Room</label>
+                                    <div class="form-field">
+                                        <i class="icon icon-arrow-down3"></i>
+                                        <select name="room" id="people" class="form-control">
+                                            @for (int i = 1; i <= 8; i++)
+                                            {
+                                                <option value="@i">@i</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="submit" id="submit" value="Find Flights" class="btn btn-primary btn-block">
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div id="hotel" class="tab-pane fade">
+                    <form method="post" class="colorlib-form">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="booknow">
+                                    <h2>Book Now</h2>
+                                    <span>Best Price Online</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="date">Check-in:</label>
+                                    <div class="form-field">
+                                        <i class="icon icon-calendar2"></i>
+                                        <input type="text" id="date" class="form-control date" placeholder="Check-in date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="date">Check-out:</label>
+                                    <div class="form-field">
+                                        <i class="icon icon-calendar2"></i>
+                                        <input type="text" id="date" class="form-control date" placeholder="Check-out date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="guests">Guest</label>
+                                    <div class="form-field">
+                                        <i class="icon icon-arrow-down3"></i>
+                                        <select name="people" id="people" class="form-control">
+                                            <option value="#">1</option>
+                                            <option value="#">2</option>
+                                            <option value="#">3</option>
+                                            <option value="#">4</option>
+                                            <option value="#">5+</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="submit" name="submit" id="submit" value="Find Hotel" class="btn btn-primary btn-block">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="car" class="tab-pane fade">
+                    <form method="post" class="colorlib-form">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="date">Where:</label>
+                                    <div class="form-field">
+                                        <input type="text" id="location" class="form-control" placeholder="Search Location">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="date">Start Date:</label>
+                                    <div class="form-field">
+                                        <i class="icon icon-calendar2"></i>
+                                        <input type="text" id="date" class="form-control date" placeholder="Check-in date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="date">Return Date:</label>
+                                    <div class="form-field">
+                                        <i class="icon icon-calendar2"></i>
+                                        <input type="text" id="date" class="form-control date" placeholder="Check-out date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="submit" name="submit" id="submit" value="Find Car" class="btn btn-primary btn-block">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="cruises" class="tab-pane fade">
+                    <form method="post" class="colorlib-form">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="date">Where:</label>
+                                    <div class="form-field">
+                                        <input type="text" id="location" class="form-control" placeholder="Search Location">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="date">Start Date:</label>
+                                    <div class="form-field">
+                                        <i class="icon icon-calendar2"></i>
+                                        <input type="text" id="date" class="form-control date" placeholder="Check-in date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="guests">Categories</label>
+                                    <div class="form-field">
+                                        <i class="icon icon-arrow-down3"></i>
+                                        <select name="category" id="category" class="form-control">
+                                            <option value="#">Suite</option>
+                                            <option value="#">Super Deluxe</option>
+                                            <option value="#">Balcony</option>
+                                            <option value="#">Economy</option>
+                                            <option value="#">Luxury</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="submit" name="submit" id="submit" value="Find Cruises" class="btn btn-primary btn-block">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            
+
+        </div>
+    </div>
+</div>
+
+<div class="colorlib-wrap" id="t">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- SIDEBAR-->
+            <div class="col-md-2 search-left" style="margin-left:15px; border: 1px solid">
+                <div class="sidebar-wrap">
+                    <div class="side animate-box">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="sidebar-heading" style="border-bottom:3px solid;width:145px">Chọn lọc theo</h3>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side animate-box">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="sidebar-heading">Xếp hạng sao</h3>
+                                <form method="get" action="#" class="colorlib-form-2">
+                                    @*Thêm viewbag để thay đổi trạng thái check*@
+                                    <div class="form-check">
+                                        <input type="checkbox" name="star1" @ViewBag.star5 class="form-check-input" id="star5" style="margin:0px;   ">
+                                        <label class="form-check-label" for="exampleCheck1">
+                                            <p class="rate"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span></p>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" name="star2" @ViewBag.star4 class="form-check-input" id="star4">
+                                        <label class="form-check-label" for="exampleCheck1">
+                                            <p class="rate"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span></p>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" name="star3" @ViewBag.star3 class="form-check-input" id="star3">
+                                        <label class="form-check-label" for="exampleCheck1">
+                                            <p class="rate"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span></p>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" name="star4" @ViewBag.star2 class="form-check-input" id="star2">
+                                        <label class="form-check-label" for="exampleCheck1">
+                                            <p class="rate"><span><i class="icon-star-full"></i><i class="icon-star-full"></i></span></p>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" name="star5" @ViewBag.star1 class="form-check-input" id="star1">
+                                        <label class="form-check-label" for="exampleCheck1">
+                                            <p class="rate"><span><i class="icon-star-full"></i></span></p>
+                                        </label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side animate-box">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="sidebar-heading">Tiện Nghi</h3>
+                                <form method="post" class="colorlib-form-2">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="service1">
+                                        <label class="form-check-label" for="exampleCheck1">
+                                            <h4 class="place" >Lễ tân 24/24</h4>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="service2">
+                                        <label class="form-check-label" for="exampleCheck1">
+                                            <h4 class="place" >Cho thuê xe</h4>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="service3">
+                                        <label class="form-check-label" for="exampleCheck1">
+                                            <h4 class="place" >Máy giặc</h4>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="service4">
+                                        <label class="form-check-label" for="exampleCheck1">
+                                            <h4 class="place" >Hệ thống cách âm</h4>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="service5">
+                                        <label class="form-check-label" for="exampleCheck1">
+                                            <h4 class="place" >Chỗ đậu xe</h4>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="service6">
+                                        <label class="form-check-label" for="exampleCheck1">
+                                            <h4 class="place">Tivi</h4>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="service7">
+                                        <label class="form-check-label" for="exampleCheck1">
+                                            <h4 class="place">Tủ lạnh</h4>
+                                        </label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <form method="post" class="colorlib-form-2">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="btn btn-warning" id="btnGia">Ưu tiên giá thấp nhất</div>                                                 
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="btn btn-warning" id="btnXepHang">Xếp hạng</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="btn btn-warning" id="btnSao">Sao</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+                <div class="row">
+                    <div class="wrap-division" id="searchresult">
+                        @foreach (KhachSan x in Model)
+                        {
+                            <div class="col-md-12 col-sm-12 animate-box">
+                                <div class="tour">
+                                    <a href="@Url.Action("Info1", "InfoHotel",new { id = @x.MaKS })" id="aPrintReport" target="_blank" class="col-md-5 col-sm-12 tour-img" style="background-image: url(/images/@x.MaKS/@x.hinh_1); border-radius:5px;">
+                                                    
+                                    </a>
+                                    <div class="col-md-7 col-sm-12 desc">
+                                        <div class="col-md-8 col-sm-8 title1">
+                                            <h2><a href="@Url.Action("Info1","InfoHotel", new { id= @x.MaKS})" target="_blank">@x.TenKS</a></h2>
+                                            <p class="star">
+                                                <span>
+                                                    @for (int i = 1; i <= @x.star; i++)
+                                                {
+                                                    <i class="icon-star-full"> </i>
+                                                }
+                                            </span> @x.LuotDanhGia Reviews
+                                        </p>
+                                        <p>@x.GioiThieu</p>
+                                        <span class="city">@x.DiaChi</span>
+                                        @Html.Action("_Phong", "QLKS", new { maks = x.MaKS })
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 rank">
+                                            
+                                            <div class="sr-review-score">
+                                                    <div style="position:absolute;width:1px;height:1px;opacity:0;"
+                                                         data-et-view="adUTWALOLOLOMAPPZTZWKNYT:2"></div>
+                                                    <div style="position:absolute;width:1px;height:1px;opacity:0;"
+                                                         data-et-view="adUTWALOLOLOMAPPZTZWKNYT:7"></div>
+                                                    <div class="bui-review-score c-score bui-review-score--end">
+                                                        <div class="bui-review-score__badge" role="link" aria-label="7,5"> @x.point </div>
+                                                        <div class="bui-review-score__content">
+                                                            @if (@x.point >= 6 && @x.point<7)
+                                                            {
+                                                                string a = "Dễ chịu";
+                                                                <div class="bui-review-score__title" aria-label="@a"> @a </div>
+                                                            }
+                                                            else if(@x.point >= 7 && @x.point < 8)
+                                                            {
+                                                                string a = "Tốt";
+                                                                <div class="bui-review-score__title" aria-label="@a"> @a </div>
+                                                            }
+                                                            else if (@x.point >= 8 && @x.point < 9)
+                                                            {
+                                                                string a = "Rất tốt";
+                                                                <div class="bui-review-score__title" aria-label="@a"> @a </div>
+                                                            }
+                                                            else if (@x.point >= 9)
+                                                            {
+                                                                string a = "Tuyệt hảo";
+                                                                <div class="bui-review-score__title" aria-label="@a"> @a </div>
+                                                            } 
+                                                           
+                                                            <div class="bui-review-score__text"> 22 đánh giá </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <ul class="pagination">
+                                    @Html.PagedListPager(Model, page => Url.Action("Search",
+    new { page, destination = ViewBag.destination, CheckIn = ViewBag.CheckIn, CheckOut = ViewBag.CheckOut, people = ViewBag.people }))
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+        function htmlDecode(input) {
+            var e = document.createElement('div');
+            e.innerHTML = input;
+            // handle case of empty input
+            return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+        }
+
+    </script>
+    @Html.Action("_JSStar", "QLKS")
+}

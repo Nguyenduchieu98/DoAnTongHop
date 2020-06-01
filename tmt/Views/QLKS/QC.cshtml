@@ -1,0 +1,31 @@
+﻿@model IEnumerable<tmt.Models.KhachSan>
+
+<div class="colorlib-tour colorlib-light-grey">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center colorlib-heading animate-box">
+                <h2>Có thể bạn cần</h2>
+                <p>Không chỉ khách sạn... khám phá sự thoải mái thật sự như đang ở nhà và tận hưởng trọn vẹn chuyến du lịch.</p>
+            </div>
+        </div>
+    </div>
+    <div class="tour-wrap">
+        @foreach (var ks in Model)
+        {
+            <a href="@Url.Action("Info1","InfoHotel",new { id= ks.MaKS})" class="tour-entry animate-box">
+                <div class="tour-img" style="background-image: url(/images/@ks.MaKS/@ks.hinh_1);">
+                </div>
+                <span class="desc">
+                    <p class="star"><span>
+                    @for (int i = 0; i < ks.star; i++)
+                    {
+                        <i class="icon-star-full"></i>
+                    }</span>@ks.LuotDanhGia</p>
+                    <h2>@ks.TenKS</h2>
+                    <span class="city">@ks.DiaChi</span>
+                    <span class="price"></span>
+                </span>
+            </a>
+        }
+    </div>
+</div>

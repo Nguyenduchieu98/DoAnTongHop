@@ -1,0 +1,64 @@
+﻿@model IEnumerable<string>
+
+<script>
+    var url = "@Request.Url.AbsoluteUri";
+    url = url.replace("Search", "_SearchAJAX");
+    //alert(url)
+    @foreach (string s in Model)
+    {
+        //change: event khi check ho?c uncheck checkbox
+                @:$("#@s").change(function () {
+                //Uncheck
+                    @:if ($("#@s").prop('checked') == false) {
+                                //Xóa tham s? star=true
+                        @:    url = htmlDecode(url);
+                        @:    url = url.replace("&@(s)=true", "");
+                                    //Redirect
+                        @:    $("#searchresult").load(url);
+                        @: var elmnt = document.getElementById("t");
+                        @:  elmnt.scrollIntoView();
+            @:}
+                            //Check
+                    @:else {
+                                //Thêm tham s? star=true
+                      @:  url = url + "&@(s)=true";
+                                    @:    url = htmlDecode(url);
+                                    //Redirect
+                          @:  $("#searchresult").load(url);
+                          @: var elmnt = document.getElementById("t");
+                        @:  elmnt.scrollIntoView();
+                                   @: }
+
+            @:});
+        
+    }
+
+    $(document).ready(function () {
+        $("#btnGia").click(function () {
+            url = url + "&gia=true";
+            url = url.replace("&xh=true", "");
+            url = url.replace("&sstar=true","")
+            url = htmlDecode(url);
+            $("#searchresult").load(url);
+        });
+        $("#btnXepHang").click(function () {
+            url = url + "&xh=true";
+            url = url.replace("&gia=true", "");
+            url = url.replace("&sstar=true", "")
+            url = htmlDecode(url);
+            $("#searchresult").load(url);
+        });
+        $("#btnSao").click(function () {
+            url = url + "&ssstar=true";
+            url = url.replace("&gia=true","");
+            url = url.replace("&xh=true", "")
+            url = htmlDecode(url);
+            $("#searchresult").load(url)
+        });
+    });
+    //$(document).ready(function () {
+    //    $("#btnGia").click(function () {
+    //        alert("Sdadas");
+    //    })
+    //})
+</script>

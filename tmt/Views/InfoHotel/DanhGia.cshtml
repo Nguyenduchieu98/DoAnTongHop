@@ -1,0 +1,64 @@
+﻿
+@model tmt.Models.DonDatPhong
+
+@if (Model == null)
+{
+
+}
+
+else if (Session["TaiKhoan"] != null && Model.DanhGia == false)
+{
+    using (Html.BeginForm("DanhGia", "InfoHotel", FormMethod.Post, new { id = Model.id_ddp}))
+    {
+        <input type="hidden" name="maks" value="@ViewBag.maks" />
+        <div class="box-sideBar" id="room-detail-booking">
+            <div class="price">
+                <p>
+                    Đánh giá của bạn
+                </p>
+            </div>
+            <div class="sideBar-form">
+                <input name="maks" type="hidden" value="" />
+                <input name="_token" type="hidden" value="B9yT7eQe90MqxgOnQCyCr51vMBNBGtyTmgVzSFDa">
+                <div class="quantity pb15">
+                    <label class="pb10">Sạch sẽ</label>
+                    <input name="SachSe" type="number" min="1" max="10" required />
+                </div>
+                <div class="quantity pb15">
+                    <label class="pb10">Thoải mái</label>
+                    <input name="ThoaiMai" type="number" min="0" required />
+                </div>
+                <div class="quantity pb15">
+                    <label class="pb10">Tiện nghi</label>
+                    <input name="TienNghi" type="number" min="1" max="10" required />
+                </div>
+                <div class="quantity pb15">
+                    <label class="pb10">Phục vụ</label>
+                    <input name="PhucVu" type="number" min="1" max="10" required />
+                </div>
+                <div class="quantity pb15">
+                    <label class="pb10">Đáng tiền</label>
+                    <input name="DangTien" type="number" min="1" max="10" required />
+                </div>
+                <div class="quantity pb15">
+                    <label class="pb10">Wifi</label>
+                    <input name="Wifi" type="number" min="1" max="10" required />
+                </div>
+                <div class="quantity pb15">
+                    <label class="pb10">Địa điểm</label>
+                    <input name="DiaDiem" type="number" min="1" max="10" required />
+                </div>
+                <div class="btn-contact">
+                    <input type="submit" class="btn btn-Orange btn-block" id="btn-booking-room" value="Đánh Giá">
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+
+}
+
+
+

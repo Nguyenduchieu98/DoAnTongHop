@@ -1,0 +1,37 @@
+﻿@using tmt.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<KhachSan>
+
+<div id="pagetarget">
+    @foreach (KhachSan x in Model)
+    {
+        <div class="col-md-12 col-sm-12 animate-box">
+            <div class="tour">
+                <a href="tour-place.html" class="col-md-5 col-sm-12 tour-img" style="background-image: url(/images/@x.MaKS/@x.hinh_1); border-radius:5px;">
+                    <p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
+                </a>
+                <div class="col-md-7 col-sm-12 desc">
+                    <h2><a href="tour-place.html">@x.TenKS</a></h2>
+                    <p class="star">
+                        <span>
+                            @for (int i = 1; i <= @x.star; i++)
+                            {
+                                <i class="icon-star-full"> </i>
+                            }
+                        </span> 545 Reviews
+                    </p>
+                    <p>@x.GioiThieu</p>
+                    <span class="city">@x.DiaChi</span>
+                    @Html.Action("_Phong", "QLKS", new { maks = x.MaKS })
+                </div>
+            </div>
+        </div>
+
+    }
+    @Html.PagedListPager(Model, page => Url.Action("_SearchAJAX",
+    new { page, destination = ViewBag.destination, star1 = ViewBag.star1, star2 = ViewBag.star2, star3 = ViewBag.star3, star4 = ViewBag.star4, star5 = ViewBag.star5 }),
+    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "pagetarget" }))
+
+
+</div>
+

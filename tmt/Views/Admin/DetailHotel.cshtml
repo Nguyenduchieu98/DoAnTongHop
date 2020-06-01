@@ -1,0 +1,49 @@
+﻿@model tmt.Models.KhachSan
+
+@{
+    ViewBag.Title = "DetailHotel";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>DetailProduct</h2>
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenKS)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenKS)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GioiThieu)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GioiThieu)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.hinh_1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.hinh_1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SDT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditHotel", new { id = Model.MaKS }) |
+    @Html.ActionLink("Back to List", "HotelControl")
+</p>
+
